@@ -13,21 +13,34 @@ public class TextReader {
     public void CreateJLabel(String message) {
         JLabel label = new JLabel(message);
         Random r = new Random();
-        label.setForeground(new Color(r.nextInt(255),r.nextInt(255),r.nextInt(255)));
+        label.setForeground(new Color(r.nextInt(255), r.nextInt(255), r.nextInt(255)));
         Font font = new Font("serif", Font.BOLD, 30);
         label.setFont(font);
-        label.setSize(new Dimension(300,50));
+        label.setSize(new Dimension(300, 50));
         Random random = new Random();
         int x = random.nextInt((int) screenSize.getHeight());
         int y = random.nextInt((int) screenSize.getWidth());
-        label.setBounds(y,x,300,50);
-        System.out.println(x+","+y);
+        label.setBounds(y, x, 300, 50);
+        System.out.println(x + "," + y);
         jPanel.setLayout(null);
         jPanel.add(label);
-        jFrame.add(jPanel,BorderLayout.CENTER);
+        jFrame.add(jPanel, BorderLayout.CENTER);
         jFrame.setVisible(true);
         jFrame.repaint();
+
+        new java.util.Timer().schedule(
+                new java.util.TimerTask() {
+                    @Override
+                    public void run() {
+                        jPanel.remove(label);
+                        jPanel.revalidate();
+                        jFrame.repaint();
+                    }
+                },
+                5000
+        );
     }
+
     public void execute() throws IOException {
 
         SetupFrame();
@@ -63,4 +76,6 @@ public class TextReader {
             CreateJLabel(line);
         }
     }
+
+
 }
