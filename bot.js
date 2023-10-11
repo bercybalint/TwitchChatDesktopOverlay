@@ -4,8 +4,8 @@ const Stream = require('stream');
 // Define configuration options
 const opts = {
     identity: {
-        username: 'mychreme',
-        password: '8v648gog1ie1z85aut9l5ijenicgan'
+        username: 'username',
+        password: 'password'
     },
     channels: [
         'mychreme'
